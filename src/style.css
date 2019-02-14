@@ -368,6 +368,13 @@ textarea.post-input {
     height: 50px;
     resize: none;
 }
+.postUser{
+    width: 100%;
+    font-size: 16px; /*agregado por ana*/
+    color: black;
+    
+}
+
 
 .create-comments-section {
     margin-right: 100px;
@@ -407,14 +414,19 @@ textarea.post-input {
     cursor: pointer; /*agregado por ana*/
 } 
 
-.remove-comment, .edit-comment{  /*agregado por ana*/
+.change-comment, .cancel_change{  /*agregado por ana*/
     cursor: pointer;
+    color: rgb(11, 89, 116);
+    margin-left: 3px;
+    margin-top: 100px;
+    font-size: 13px;
 } 
 
 .edit-comment, .remove-comment{/*agregado por ana*/
     color: rgb(11, 89, 116);
     margin-left: 40px;
     margin-top: 100px;
+    cursor: pointer;
 }
 
 .material-icons{ /*agregado por ana*/
@@ -428,8 +440,44 @@ textarea.post-input {
     color: steelblue;
 }
 
+.update-post{
+    margin-left: 2px !important;
+    font-size: 14px;
+}
+
+.cancel-post{
+ margin-right: 5px;
+ font-size: 14px;
+}
+
+.optionConfirmCancel, .button_confirm_edit{
+    display: none;
+}
+
+.postUser, .coment_user{
+    min-height: 20%;
+    margin: 5% auto;
+    border: whitesmoke;
+    background-color: whitesmoke;
+    border-radius: 14px;
+    margin: auto 0; 
+    display: block; 
+    /* overflow: scroll; */
+    width: 102%;
+    resize: vertical;
+    word-wrap: normal;
+    font-size: 17px;
+    color: black;
+
+}
+
+
 @media only screen and (max-width: 768px) {
     .responsive {
         display: flex;
     }
   }
+
+/* .textarea:focus {
+    background-color: blue
+} */

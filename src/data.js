@@ -38,15 +38,19 @@ window.socialNetwork = {
             <div class="post" id="caja${post}">
                    <div class="post-header">
                        <span><img src="${snapshot.val()[post].authorPic ? snapshot.val()[post].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${snapshot.val()[post].author} - Profesora de Básica</p></span>
-      
                    </div>
                    <div class="post-content">
-                    <span>${snapshot.val()[post].content}</span>
+                    <textarea disabled  class= "postUser" id="post-user${post}">${snapshot.val()[post].content}</textarea>
+                        <div id="button-option${post}" class="optionConfirmCancel">
+                        <a id="to_update-${post}" class="update-post teachers-font">Actualizar</a>
+                        <a id="cancel_edit-${post}" class="cancel-post teachers-font">Cancelar</a>
+                        </div>
+
                    </div>
                    <div class="options">
                    <a class="like" id=${post}><i class="material-icons">star_border</i><span>${snapshot.val()[post].likes ? Object.values(snapshot.val()[post].likes).length : "0"}</span></a>
                    <a class="comments" id="comments${post}"><i class="material-icons">comment</i><span>${snapshot.val()[post]["comments"] ? Object.values(snapshot.val()[post]["comments"]).length : "0"}</span></a>
-                   <a class="edit-post teachers-font">Editar</a>
+                   <a id="edit-${post}" class="edit-post teachers-font">Editar</a>
                    <a id="delete-${post}" class="remove-post teachers-font">Eliminar</a>
                    <a class="teachers-font create-comment" id="create-comment-${post}">Comentar</a>
                    </div>
@@ -55,10 +59,9 @@ window.socialNetwork = {
                    
                    </div>
             </div>
-    
-            
+                        
             `
-    
+                
             document.getElementById("comments-section-"+post).style.display = "none"
     
             if (snapshot.val()[post].likes !== undefined && Object.keys(snapshot.val()[post].likes).indexOf(firebase.auth().currentUser.uid) !== -1) {
@@ -84,6 +87,23 @@ window.socialNetwork = {
             for (let i = 0; i < deletePost.length; i ++) {
                 deletePost[i].addEventListener("click", removePost)
             }
+
+            let modifyPost = document.getElementsByClassName("edit-post");
+            for (let i = 0; i < modifyPost.length; i++){
+                modifyPost[i].addEventListener("click", enableTextarea)
+            }
+
+            let confirmEdit = document.getElementsByClassName("update-post");
+            for (let i= 0; i < confirmEdit.length; i++){
+                confirmEdit[i].addEventListener("click", confirm_edit)
+            }
+
+            let cancelEdit = document.getElementsByClassName("cancel-post");
+            for (let i= 0; i < cancelEdit.length; i++){
+                cancelEdit[i].addEventListener("click", cancel_editPost)
+            }
+
+        
 
           
     

@@ -14,11 +14,15 @@ function showComments() {
             <span><img src="${snapshot.val()[comment].authorPic ? snapshot.val()[comment].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${snapshot.val()[comment].author} - Profesora de Básica</p></span>       
             </div>
             <div class="comment-content">
-                <span>${snapshot.val()[comment].content}</span>
-            <div>
-            <a class="edit-comment" >Editar</a>
-            <a id="delete-comment-${snapshot.val()[comment].postId}/comments/${comment}" class="remove-comment">Eliminar</a>
-            </div>
+                <textarea disabled id="comentUser${snapshot.val()[comment].postId}/comments/${comment}" class="coment_user">${snapshot.val()[comment].content}</textarea>
+                <div>
+                    <div id= "buttonConfirmComment${snapshot.val()[comment].postId}/comments/${comment}"  class= "button_confirm_edit" >
+                    <a id="confirm-change${snapshot.val()[comment].postId}/comments/${comment}" class="change-comment" >Actualizar</a>
+                    <a id="cancel-change${snapshot.val()[comment].postId}/comments/${comment}" class="cancel_change">Cancelar</a>
+                    </div>
+                <a id="edit-comment-${snapshot.val()[comment].postId}/comments/${comment}" class="edit-comment" >Editar</a>
+                <a id="delete-comment-${snapshot.val()[comment].postId}/comments/${comment}" class="remove-comment">Eliminar</a>
+                </div>
             </div> 
             
             `
@@ -26,8 +30,23 @@ function showComments() {
             let deleteComment = document.getElementsByClassName("remove-comment");
             for (let i = 0; i < deleteComment.length; i++){
                 deleteComment[i].addEventListener("click", removeComment)
-
             }
+
+            let editComment = document.getElementsByClassName("edit-comment");
+            for (let i = 0; i < editComment.length; i++){
+                editComment[i].addEventListener("click", edit_comment)
+            }
+
+            let confirmChangeComment= document.getElementsByClassName("change-comment")
+            for (let i = 0; i < confirmChangeComment.length; i++){
+                confirmChangeComment[i].addEventListener("click", confirm_change_comment)
+            }
+
+            let cancelChangeComment=document.getElementsByClassName("cancel_change")
+            for (let i= 0; i < cancelChangeComment.length; i++){
+                cancelChangeComment[i].addEventListener("click", cancel_change_comment)
+            }
+        
         }
     })
     if(areTherePosts === false) {
@@ -58,7 +77,7 @@ function createComment() {
             const post_text = document.getElementById(`text-${postId}`).value;
             submitComment(userId, post_text, postId)
         })
-
+        
     } else {
         document.getElementById("create-comments-section-"+postId).innerHTML = "";
     }
@@ -137,7 +156,7 @@ function removePost() {
         commentsRef.remove();
         commentsRef2.remove();
 	} else {
-        return  null
+        return  
     
     }
 }
@@ -151,10 +170,67 @@ function removeComment() {
     if (optionConfirmRemove == true){
         commentRef3.remove();
     } else {
-        return null
+        return 
     }
     
 }
 
+//función para habilitar textarea del post
 
+function enableTextarea () {
+    let shortenId3=this.id.slice(5) //id del boton editar
+    document.getElementById("post-user"+shortenId3).disabled=false
+    // document.getElementById("post-user"+shortenId3).contenteditable=true
+    document.getElementById("button-option"+shortenId3).style.display= "block";
+    document.getElementById("post-user"+shortenId3).focus();    
+    }           
+    
+
+//funcion para confimar actualización post
+
+function confirm_edit() {
+    let shortenId4=this.id.slice(10)
+    let routeContent= document.getElementById("post-user"+shortenId4).value;
+    firebase.database().ref("posts/"+shortenId4).update({
+        content: routeContent
+    })
+
+}
+
+//funcion para cancelar editar post
+
+function cancel_editPost(){
+    let cancelId=this.id.slice(12)
+    document.getElementById("post-user"+cancelId).disabled = true;
+    document.getElementById("button-option"+cancelId).style.display= "none";
+}
+
+
+//funcion para habilitar textarea de comentarios
+
+function edit_comment() {
+    let editCommentUser=this.id.slice(13)
+    document.getElementById("comentUser"+editCommentUser).disabled=false;
+    document.getElementById("comentUser"+editCommentUser).focus();
+    document.getElementById("buttonConfirmComment"+editCommentUser).style.display= "block";
+
+}
+
+
+// funcion para editar comentarios
+function confirm_change_comment() {
+    let confirm_change = this.id.slice(14) //id del boton actualizar
+    let routeContentComment = document.getElementById("comentUser"+confirm_change).value;
+    firebase.database().ref("posts/"+confirm_change).update({
+        content: routeContentComment
+    })
+}
+
+//funcion para cancelar editar comentarios
+
+function cancel_change_comment(){
+    let cancelIdComment = this.id.slice(13)
+    document.getElementById("comentUser"+cancelIdComment).disabled = true;   
+    document.getElementById("buttonConfirmComment"+cancelIdComment).style.display= "none"
+}
 
