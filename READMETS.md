@@ -5,7 +5,7 @@
 
 Es un aplicación que esta dirigida principalmente a Profesores de diferentes especialidades con la finalidad de generar la instancia dónde puedan aclarar dudas, orientarse en temas difíciles de abordar, buscar profesores de su misma disciplina con el objetivo de ver temas de carácter educativo. 
 
-De esta manera les brindamos una facilidad al momento de organizar una actividad o dinámica para sus estudiantes y no saben como abordarla, basandose en la experiencia de otros profesionales. Por ejemplo: Si una Profesora de Orientación quiere abordar un tema sobre sexualidad y no sabe cómo, puede recurrir a esta aplicación preguntando directamente a los usuarios o buscando por "tag" sobre el tema y ver los contenidos que ya se han abordado, de esta manera además ahorran tiempo (que para ellos es muy escaso, dado a lo poco que disponen).
+De esta manera les brindamos la facilidad al momento de organizar una actividad o dinámica para sus estudiantes y no saben como abordarla, basandose en la experiencia de otros profesionales. Por ejemplo: Si una Profesora de Orientación quiere abordar un tema sobre sexualidad y no sabe cómo, puede recurrir a esta aplicación preguntando directamente a los usuarios o buscando por "tag" sobre el tema y ver los contenidos que ya se han abordado, de esta manera además ahorran tiempo (que para ellos es muy escaso, dado a lo poco que disponen).
 
 
 ## **Ideación de Diseño**
@@ -15,7 +15,7 @@ Para definir el diseño de nuestra Red Social comenzamos a revisar la interfaz d
 
 ### **Entrevista**  
 
-Se realizó una encuesta a seis profesoreEXITs de dististas disciplinas, les explicamos la aplicación que tenemos pensado hacer y les parece muy interesante porque ninguno conoce una aplicación que este dirigida principalmente a ellos.
+Se realizó una encuesta a seis profesores de distintas disciplinas, les explicamos la aplicación que tenemos pensado hacer y les parece muy interesante porque ninguno conoce una aplicación que este dirigida principalmente a ellos. El poder compartir su experiencia sobre su quehacer profesional y conocer la de los demás, les permite poder planificar de mejor manera sus actividades, abordar con más facilidad algunos temas que son difíciles de sobrellevar y ahorrar tiempo en buscar en diversas paginas web.
 
 
 ### **Historia de usuario**
@@ -86,7 +86,7 @@ Historia Nº 4
 * Iniciar sesión
 * Hacer click en el icono que aparece en la parte inferior de la aplicación
 * Se despliega una columna, donde seleccionar la sección "Amigos"
-* Luego escribir el nombre de la persona que esta buscando
+* Luego escribir el nombre de la persona que está buscando
 
 
 

@@ -226,6 +226,9 @@ const config = {
     }
   });
 
+ 
+  
+
   // PARA VERIFICAR QUE LA AUTENTICACION CON REDIRECCIONAMIENTO SALIO OK
   firebase.auth().getRedirectResult().then(function(result) {
     if (result.credential) {
@@ -247,7 +250,7 @@ const config = {
     // ...
   });
 
- 
+  
  
 
 })
