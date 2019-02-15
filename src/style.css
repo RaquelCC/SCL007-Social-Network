@@ -32,7 +32,9 @@ body {
     
 }
 
-
+#friends {
+    display: none;
+}
 
 #new-account {
     cursor: pointer;

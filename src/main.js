@@ -159,7 +159,7 @@ const config = {
              <div id="user-pic"><img src="${snapshot.val().profile.profilePic}" class="user-pic" alt="userPic"></div>
              <div id="user-name">${snapshot.val().profile.username}</div>
              <div id="profile-info" class="side-option"><a>Perfil de Usuario</a></div>
-             <div class="side-option"><a>Amigos</a></div>
+             <div id="friends" class="side-option"><a>Amigos</a></div>
              <div class="side-option"><a id="logout">Cerrar Sesión</a></div>
     
          </div>
