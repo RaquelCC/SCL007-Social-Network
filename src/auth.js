@@ -42,7 +42,9 @@ function logout() {
 
 // CREAR CUENTA MAIL Y PWD
 function createAccount(mail, pwd) {
-    firebase.auth().createUserWithEmailAndPassword(mail, pwd).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(mail, pwd).then(function(){
+      window.socialNetwork.verification();
+    }).catch(function(error) {
         // Handle Errors here.
         const errorCode = error.code;
         const errorMessage = error.message;
