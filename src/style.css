@@ -489,6 +489,7 @@ textarea.post-input {
 .responsive-nav {
     display: flex;
     border-bottom: solid 1px rgb(11, 89, 116);
+    z-index: 100;
 }
 
 .nav-bar-desktop {
