@@ -343,7 +343,6 @@ function postingPage () {
 
 
 
-
 // POSTS ES UN ARRAY
 function printTaggedPosts(posts) {
   document.getElementById("content").innerHTML = "";
