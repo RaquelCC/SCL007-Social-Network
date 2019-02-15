@@ -115,6 +115,24 @@ window.socialNetwork = {
 
         })
             
+    },
+    //tag es un array
+    searchTag: (tag)=> {
+        let filteredPosts = {};
+        firebase.database().ref("posts/").on("value", function(snapshot){
+            // console.log(snapshot.val())
+            for (let i = 0; i<tag.length; i++){
+                for (let post in snapshot.val()) {
+                    // console.log(post)
+                    if(snapshot.val()[post].tags.split(" ").indexOf(tag[i]) !== -1 || snapshot.val()[post].tags.split(" ").indexOf("#"+tag[i]) !== -1 ){
+                        filteredPosts[post] = snapshot.val()[post]
+                    }
+                }
+            }
+
+
+        })
+        return filteredPosts
     }
     
 

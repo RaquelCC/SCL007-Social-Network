@@ -178,6 +178,20 @@ const config = {
           
         window.socialNetwork.printPosts(window.socialNetwork.printPostsDOM);
   
+
+    //PARA BUSCAR POR TAG
+    document.getElementById("search-tag").addEventListener("click", ()=> {
+
+      if(document.getElementById("search").value === ""){
+        // console.log("no hay tags")
+        return
+      }
+
+      let tags = document.getElementById("search").value.split(" ");
+      
+      printTaggedPosts(window.socialNetwork.searchTag(tags))
+
+    })
     
     // BOTON QUE CREA PAGINA PARA POSTEAR
     document.getElementById("new-post").addEventListener("click", postingPage)
@@ -322,10 +336,75 @@ function postingPage () {
       window.scrollTo(0,0);
 
     })
-  
+
+    
 }
 
 
 
 
 
+// POSTS ES UN ARRAY
+function printTaggedPosts(posts) {
+  document.getElementById("content").innerHTML = "";
+    for (let post in posts){
+      // console.log(post)
+    // console.log(Object.values(snapshot.val()[post].comments).length)
+    document.getElementById("content").innerHTML += `
+    <div class="post div-responsive" id="caja${post}">
+           <div class="post-header">
+               <span><img src="${posts[post].authorPic ? posts[post].authorPic : './img/userLogo.png'}" class="user-pic-post" alt="userPic"><p>${posts[post].author} ${posts[post].especialidad ? "- "+posts[post].especialidad : ""}</p></span>
+
+           </div>
+           <div class="post-content">
+            <span>${posts[post].content}</span>
+           </div>
+           <div class="options">
+           <a class="like" id=${post}><i class="material-icons">star_border</i><span>${posts[post].likes ? Object.values(posts[post].likes).length : "0"}</span></a>
+           <a class="comments" id="comments${post}"><i class="material-icons">comment</i><span>${posts[post]["comments"] ? Object.values(posts[post]["comments"]).length : "0"}</span></a>
+           <a class="edit-post teachers-font">Editar</a>
+           <a id="delete-${post}" class="remove-post teachers-font">Eliminar</a>
+           <a class="teachers-font create-comment" id="create-comment-${post}">Comentar</a>
+           </div>
+           <div id="create-comments-section-${post}"></div>
+           <div class="comments-section div-responsive" id="comments-section-${post}">
+           
+           </div>
+    </div>
+
+    
+    `
+
+    document.getElementById("comments-section-"+post).style.display = "none"
+
+    if (posts[post].likes !== undefined && Object.keys(posts[post].likes).indexOf(firebase.auth().currentUser.uid) !== -1) {
+        document.getElementById(post).innerHTML = `
+        <i class="material-icons">star</i><span>${posts[post].likes ? Object.values(posts[post].likes).length : "0"}</span>
+        `
+    }
+    // console.log("creando funciones")
+    let likeButtons = document.getElementsByClassName("like");
+    for (let i = 0; i < likeButtons.length; i++) {
+        likeButtons[i].addEventListener("click", setLikePost)
+    }
+    let commentsButtons = document.getElementsByClassName("comments");
+    for (let i = 0; i < commentsButtons.length; i++) {
+        commentsButtons[i].addEventListener("click", showComments)
+    }
+    let createCommentsButtons = document.getElementsByClassName("create-comment");
+    for (let i = 0; i < createCommentsButtons.length; i ++) {
+        createCommentsButtons[i].addEventListener("click", createComment)
+    }
+
+    let deletePost = document.getElementsByClassName("remove-post");
+    for (let i = 0; i < deletePost.length; i ++) {
+        deletePost[i].addEventListener("click", removePost)
+    }
+
+  
+
+    // document.getElementById(post).addEventListener("click", setLikePost)
+    // document.getElementById("comments"+post).addEventListener("click", showComments)
+    
+  }
+}
