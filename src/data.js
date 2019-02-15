@@ -145,7 +145,7 @@ window.socialNetwork = {
             for (let i = 0; i<tag.length; i++){
                 for (let post in snapshot.val()) {
                     // console.log(post)
-                    if(snapshot.val()[post].tags.split(" ").indexOf(tag[i]) !== -1 || snapshot.val()[post].tags.split(" ").indexOf("#"+tag[i]) !== -1 ){
+                    if(snapshot.val()[post].tags.toLowerCase().split(" ").indexOf(tag[i].toLowerCase()) !== -1 || snapshot.val()[post].tags.toLowerCase().split(" ").indexOf("#"+tag[i].toLowerCase()) !== -1 ){
                         filteredPosts[post] = snapshot.val()[post]
                     }
                 }
