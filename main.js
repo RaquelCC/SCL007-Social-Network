@@ -174,7 +174,6 @@ const config = {
   
       // REFERESH CON LOGO
       document.getElementById("logo").addEventListener("click", ()=> {
-        // location.reload();
         window.socialNetwork.printPosts(window.socialNetwork.printPostsDOM);
       })
 
