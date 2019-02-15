@@ -87,6 +87,8 @@ const config = {
     </div>
     
     `
+
+  
     // BOTON LOGIN CON GOOGLE
     document.getElementById("google-login").addEventListener("click", googleLogin)
   
@@ -170,6 +172,13 @@ const config = {
   
       document.getElementById("btnUp").addEventListener("click", scrollWin);
   
+      // REFERESH CON LOGO
+      document.getElementById("logo").addEventListener("click", ()=> {
+        // location.reload();
+        window.socialNetwork.printPosts(window.socialNetwork.printPostsDOM);
+      })
+
+
       function scrollWin() {
         // console.log("funciona")
         // document.getElementById("content").scrollTo(0, 0);
